@@ -1,0 +1,25 @@
+/* SPACING */
+:root {
+
+    --spacing-xs: calc(6px / 16px * 1rem);
+    --spacing-0: calc(10px / 16px * 1rem);
+    --spacing-1: calc(18px / 16px * 1rem);
+    --spacing-2: calc(24px / 16px * 1rem);
+    --spacing-3: calc(36px / 16px * 1rem);
+    --spacing-4: calc(54px / 16px * 1rem);
+    --spacing-5: calc(81px / 16px * 1rem);
+    --spacing-6: calc(121px / 16px * 1rem);
+    --spacing-7: calc(182px / 16px * 1rem);
+    --spacing-xl: calc(744px / 16px * 1rem);
+
+    --spacing-grid-gap: var(--spacing-0);
+    --spacing-section: var(--spacing-4);
+
+}
+
+@media all and (min-width: 1024px) {
+    :root {
+        --spacing-grid-gap: var(--spacing-2);
+        --spacing-section: var(--spacing-5);
+    }
+}

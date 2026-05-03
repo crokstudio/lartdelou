@@ -1,0 +1,21 @@
+.mainnav--container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--spacing-2) var(--spacing-5);
+}
+
+.mainnav--links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: var(--spacing-4);
+}
+
+.mainnav--active {
+  text-decoration-line: underline;
+  text-underline-offset: 0.25em;
+}

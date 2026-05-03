@@ -1,0 +1,78 @@
+---
+permalink: contact.html
+title: Contact
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+
+    <section class="section contact">
+        <article class="contact-featured" aria-label="Oeuvre mise en avant">
+            <figure class="contact-featured--figure">
+                {% responsiveImage "/assets/medias/img/aurora.jpg", "Aurora", "(max-width: 1023px) 100vw, 32vw", "contact-featured--image" %}
+                <figcaption class="contact-featured--caption">
+                    <div>
+                        <h2>Aurora</h2>
+                        <p>2024</p>
+                    </div>
+                    <div>
+                        <p>Acrylique sur bois</p>
+                        <p>44x48</p>
+                    </div>
+                </figcaption>
+            </figure>
+        </article>
+
+        <div class="contact--divider" aria-hidden="true"></div>
+
+        <article class="contact-content">
+            <div class="contact-content--header">
+                <h1>Contactez-moi</h1>
+                <div class="contact-content--intro">
+                    <div class="contact-content--details">
+                        <p>L&rsquo;art de Lou</p>
+                        <p>BELGIQUE</p>
+                        <p><a href="mailto:adressmail@gmail.com">adressmail@gmail.com</a></p>
+                    </div>
+                    {% responsiveImage "/assets/medias/img/contact-portrait.png", "Portrait de Lou", "(max-width: 1023px) 24vw, 10vw", "contact-content--portrait" %}
+                </div>
+            </div>
+
+            <form class="contact-form" name="contact" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact">
+                <p class="contact-form--hidden">
+                    <label>Ne pas remplir <input name="bot-field"></label>
+                </p>
+
+                <label class="contact-form--field">
+                    <span>Nom</span>
+                    <input type="text" name="nom" autocomplete="family-name" required>
+                </label>
+
+                <label class="contact-form--field">
+                    <span>Prénom</span>
+                    <input type="text" name="prenom" autocomplete="given-name" required>
+                </label>
+
+                <label class="contact-form--field">
+                    <span>Email</span>
+                    <input type="email" name="email" autocomplete="email" required>
+                </label>
+
+                <label class="contact-form--field">
+                    <span>Objet du mail</span>
+                    <input type="text" name="objet" required>
+                </label>
+
+                <label class="contact-form--field contact-form--field-message">
+                    <span>Message</span>
+                    <textarea name="message" required></textarea>
+                </label>
+
+                <button class="contact-form--submit cta" type="submit">Envoyer</button>
+            </form>
+        </article>
+    </section>
+
+{% endblock %}

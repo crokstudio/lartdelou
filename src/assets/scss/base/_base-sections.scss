@@ -1,0 +1,8 @@
+.section{
+    padding-block: var(--spacing-section);
+}
+
+body > main > .section {
+    flex: 1;
+    min-height: 0;
+}

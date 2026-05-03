@@ -1,0 +1,24 @@
+:root {
+
+    /* ROOT VARIABLES */
+    --color-black-100: #242424;
+    --color-black-75: #3E3C3B;
+    --color-black-50: #7A7876;
+
+    --color-white-100: #F3F0E9;
+    --color-white-75: #B6B3B0;
+    --color-white-50: #7A7775;
+
+    --color-red-50: #FF6969;
+
+
+    /* TEXT VARIABLES */
+    --text-color-100: var(--color-black-100);
+    --text-color-75: var(--color-black-75);
+    --text-color-50: var(--color-black-50);
+
+    --text-color-light-100: var(--color-white-100);
+    --text-color-light-75: var(--color-white-75);
+    --text-color-light-50: var(--color-white-50);
+
+}

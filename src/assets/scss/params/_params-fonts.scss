@@ -1,0 +1,253 @@
+:root {
+    /*p*/
+    --font-family-p: "Cabinet Grotesk", sans-serif;
+    --font-size-p: var(--spacing-1);
+    --font-weight-p: 500;
+    --font-line-height-p: 100%;
+
+    /*h5*/
+    --font-family-h5: "Cabinet Grotesk", sans-serif;
+    --font-size-h5: var(--spacing-1);
+    --font-weight-h5: 300;
+    --font-line-height-h5: 100%;
+
+    /*h4*/
+    --font-family-h4: "Cabinet Grotesk", sans-serif;
+    --font-size-h4: var(--spacing-2);
+    --font-weight-h4: 300;
+    --font-line-height-h4: 100%;
+
+    /*h3*/
+    --font-family-h3: "Cabinet Grotesk", sans-serif;
+    --font-size-h3: var(--spacing-2);
+    --font-weight-h3: 500;
+    --font-line-height-h3: 100%;
+
+    /*h2*/
+    --font-family-h2: "Cabinet Grotesk", sans-serif;
+    --font-size-h2: var(--spacing-3);
+    --font-weight-h2: 500;
+    --font-line-height-h2: 100%;
+
+    /*h1*/
+    --font-family-h1: "Cabinet Grotesk", sans-serif;
+    --font-size-h1: var(--spacing-4);
+    --font-weight-h1: 900;
+    --font-line-height-h1: 100%;
+}
+
+/* DESKTOP FONTS SIZES */
+@media all and (min-width: 1024px) {
+
+    :root {
+    /*p*/
+    --font-size-p: var(--spacing-1);
+
+    /*h5*/
+    --font-size-h5: var(--spacing-1);
+
+    /*h4*/
+    --font-size-h4: var(--spacing-2);
+
+    /*h3*/
+    --font-size-h3: var(--spacing-2);
+
+    /*h2*/
+    --font-size-h2: var(--spacing-3);
+
+    /*h1*/
+    --font-size-h1: var(--spacing-6);
+    }
+
+}
+
+/* APPLY TEXT PARAMETERS */
+
+a {
+    font-family: var(--font-family-p);
+    font-size: var(--font-size-p);
+    font-weight: var(--font-weight-p);
+
+    line-height: var(--font-line-height-p);
+
+    color: var(--text-color-75);
+}
+
+.f-nav {
+
+    font-family: var(--font-family-p);
+    font-size: var(--spacing-1);
+    font-weight: 300;
+
+    line-height: 100%;
+
+    color: var(--color-black-100);
+
+}
+
+@media all and (min-width: 1024px) {
+
+    .f-nav {
+        font-size: var(--spacing-1);
+    }
+
+}
+
+/* CALL TO ACTION */
+.cta {
+    font-family: var(--font-family-p);
+    font-size: var(--font-size-p);
+    font-weight: 500;
+
+    color: var(--text-color-100);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cta:after {
+
+    content: "→";
+    display: inline;
+
+    font-family: var(--font-family-p);
+    font-size: var(--font-size-p);
+    font-weight: var(400);
+
+    color: var(--text-color-100);
+
+    padding-inline-start: var(--spacing-0);
+}
+
+.cta-Big {
+
+    text-align: right;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-3);
+
+    white-space: nowrap;
+    
+}
+
+.cta-Big::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color-100);
+    
+}
+
+.cta-Big::after {
+    content: "→";
+    display: block;
+    color: var(--text-color-100);
+
+    font-family: var(--font-family-p);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    
+}
+
+/* DEFAULT TEXT STYLES */
+
+p {
+    font-family: var(--font-family-p);
+    font-size: var(--font-size-p);
+    font-weight: var(--font-weight-p);
+
+    line-height: var(--font-line-height-p);
+
+    color: var(--text-color-100);
+}
+
+h5 {
+    font-family: var(--font-family-h5);
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-h5);
+
+    line-height: var(--font-line-height-h5);
+
+    color: var(--text-color-100);
+}
+
+h4 {
+    font-family: var(--font-family-h4);
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-h4);
+
+    line-height: var(--font-line-height-h4);
+    
+    color: var(--text-color-100);
+}
+
+h3 {
+    font-family: var(--font-family-h3);
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-h3);
+    line-height: var(--font-line-height-h3);
+    
+    color: var(--text-color-100);
+    }
+
+h2 {
+    font-family: var(--font-family-h2);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-h2);
+    line-height: var(--font-line-height-h2);
+    
+    color: var(--text-color-100);
+    }
+        
+h1 {
+    font-family: var(--font-family-h1);
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-h1);
+    line-height: var(--font-line-height-h1);
+    
+    color: var(--text-color-100);
+}
+
+/* TEXT MODIFIERS */
+
+.fc-100 {
+    color: var(--text-color-100);
+}
+
+.fc-75 {
+    color: var(--text-color-75);
+}
+
+.fc-50 {
+    color: var(--text-color-50);
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+.fw-regular {
+    font-weight: 500;
+}
+.fw-light {
+    font-weight: 300;
+}
+
+.fh-125 {
+    line-height: 125%;
+}
+
+.fh-auto {
+    line-height: normal;
+}
+
+/* SECTION MODIFIERS */
+
+.section--dark{
+    --text-color-100: var(--text-color-light-100);
+    --text-color-75: var(--text-color-light-75);
+    --text-color-50: var(--text-color-light-50);
+}

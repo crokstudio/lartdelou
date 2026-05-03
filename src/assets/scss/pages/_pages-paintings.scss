@@ -1,0 +1,143 @@
+:root {
+    --image-height: 360px;
+}
+
+.paintings {
+    display: flex;
+    align-items: flex-end;
+
+    width: 100%;
+    padding-bottom: var(--spacing-6);
+
+    overflow: hidden;
+}
+
+.paintings--list {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    width: 100%;
+    height: 100%;
+
+    gap: var(--spacing-2);
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.paintings--list.is-resetting,
+.paintings--list.is-resetting .paintings--item {
+    transition: none;
+}
+
+.paintings--set {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: flex-end;
+
+    height: 100%;
+
+    gap: var(--spacing-2);
+}
+
+.paintings--item {
+    flex: 0 0 auto;
+    width: var(--image-width);
+    height: var(--image-height);
+    transition: width 0.35s ease, height 0.35s ease;
+    
+    position: relative;
+}
+
+.paintings--item picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.paintings--item .fluidimg {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+}
+
+.paintings--item.active {
+    width: var(--image-width-active);
+    height: var(--image-height-active);
+}
+
+.paintings--item--infos {
+    position: absolute;
+    z-index: 10;
+
+    opacity: 0;
+    scale: 0;
+    transition: all 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-0);
+}
+
+.paintings--item.active .paintings--item--infos, .paintings--item.active .painting--sold{
+
+    opacity: 1;
+    scale: 1;
+
+}
+
+.paintings--item--infos:first-of-type {
+    top: 0;
+    right: 0;
+    transform: translateX(calc(100% + 24px));
+}
+
+.paintings--item--infos:nth-of-type(2) {
+    bottom: calc(var(--image-height) + var(--spacing-4));
+    left: 0;
+    transform: translateX(calc(-100% - 24px));
+    align-items: flex-end;
+}
+
+.paintings--item--infos:nth-of-type(3) {
+    bottom: 0;
+    left: 0;
+    transform: translateY(calc(100% + var(--spacing-1)));
+    gap: var(--spacing-xs);
+}
+
+.painting--sold {
+
+    position: absolute;
+    z-index: 10;
+
+    top: 0;
+    left: 0;
+    transform: translateX(calc(-100% - 24px));
+
+    opacity: 0;
+    scale: 0;
+    transition: all 0.2s ease;
+
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-0);
+    align-items: center;
+    justify-content: center;
+}
+
+.painting--sold::before {
+
+    content: "";
+    display: block;
+    width: var(--spacing-1);
+    height: var(--spacing-1);
+
+    border-radius: 50%;
+
+    background-color: var(--color-red-50);
+
+}

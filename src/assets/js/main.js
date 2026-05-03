@@ -1,6 +1,7 @@
 const paintingsList = document.querySelector("[data-paintings-list]");
+const supportsDesktopCarousel = window.matchMedia("(min-width: 1024px)");
 
-if (paintingsList) {
+if (paintingsList && supportsDesktopCarousel.matches) {
   const sets = Array.from(paintingsList.querySelectorAll("[data-paintings-set]"));
   const viewport = paintingsList.closest(".paintings");
   const items = Array.from(paintingsList.querySelectorAll(".paintings--item"));

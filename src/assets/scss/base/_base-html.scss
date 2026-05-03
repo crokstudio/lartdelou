@@ -27,6 +27,18 @@ body > main {
     min-height: 0;
 }
 
+@media all and (max-width: 1023px) {
+    body {
+        height: auto;
+        min-height: 100dvh;
+    }
+
+    body > main {
+        flex: 0 0 auto;
+        min-height: auto;
+    }
+}
+
 ul {
 
     padding: 0;

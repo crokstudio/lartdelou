@@ -190,8 +190,21 @@
         max-height: none;
     }
 
+    .contact-featured--caption {
+        gap: var(--spacing-1);
+    }
+
     .contact-content--header {
         grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--spacing-2);
+    }
+
+    .contact-content h1 {
+        font-size: var(--spacing-4);
+    }
+
+    .contact-content picture {
+        width: clamp(5rem, 24vw, 8rem);
     }
 
     .contact-form {

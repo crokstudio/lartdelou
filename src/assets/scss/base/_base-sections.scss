@@ -6,3 +6,10 @@ body > main > .section {
     flex: 1;
     min-height: 0;
 }
+
+@media all and (max-width: 1023px) {
+    body > main > .section {
+        flex: none;
+        min-height: auto;
+    }
+}

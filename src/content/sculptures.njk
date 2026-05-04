@@ -1,0 +1,44 @@
+---
+permalink: sculptures.html
+title: Sculptures
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+
+    <section class="section paintings">
+        <div class="paintings--list" data-paintings-list>
+        {% for set in [0, 1] %}
+            <ul class="paintings--set" data-paintings-set>
+            {% for sculpture in collections.sculptures %}
+                <li class="paintings--item" data-index="{{ loop.index0 }}">
+                    {% responsiveImage sculpture.data.image, sculpture.data.title, "100vw", "fluidimg" %}
+                    <div class="paintings--item--infos">
+                        <h2 class="painting--name">{{ sculpture.data.title }}</h2>
+                        <h4 class="painting--date">{{ sculpture.data.date | year}}</h4>
+                    </div>
+                    
+                    <div class="paintings--item--infos">
+                        <h4 class="painting--dimensions">{{ sculpture.data.dimensions.x }} x {{ sculpture.data.dimensions.y }}</h4>
+                        <h3 class="painting--type">{{ sculpture.data.type }}</h3>
+                    </div>
+
+                    <div class="paintings--item--infos">
+                        <h5 class="painting--dimensions">interessé ?</h5>
+                        <a href="/contact" class="cta"><p class="painting--type">contacter</p></a>
+                    </div>
+
+                    {% if sculpture.data.sold %}
+                        <h5 class="painting--sold">vendu</h5>
+                    {%endif%}
+                </li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+
+        </div>
+        
+    </section>
+
+{% endblock %}

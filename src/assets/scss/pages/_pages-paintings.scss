@@ -3,206 +3,196 @@
 }
 
 .paintings {
-    display: flex;
-    align-items: flex-end;
-
+    display: block;
     width: 100%;
-    padding-bottom: var(--spacing-6);
-
-    overflow: hidden;
+    padding-inline: var(--spacing-2);
+    padding-bottom: var(--spacing-section);
+    overflow: visible;
 }
 
 .paintings--list {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-
+    display: block;
     width: 100%;
-    height: 100%;
-
-    gap: var(--spacing-2);
-    transition: transform 0.35s ease;
-    will-change: transform;
-}
-
-.paintings--list.is-resetting,
-.paintings--list.is-resetting .paintings--item {
-    transition: none;
+    height: auto;
 }
 
 .paintings--set {
     display: flex;
-    flex: 0 0 auto;
-    flex-direction: row;
-    align-items: flex-end;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    height: auto;
+}
 
-    height: 100%;
-
-    gap: var(--spacing-2);
+.paintings--set + .paintings--set {
+    display: none;
 }
 
 .paintings--item {
-    flex: 0 0 auto;
-    width: var(--image-width);
-    height: var(--image-height);
-    transition: width 0.35s ease, height 0.35s ease;
-    
     position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+
+    padding-block-start: var(--spacing-2);
 }
 
 .paintings--item picture {
     display: block;
     width: 100%;
-    height: 100%;
-    cursor: pointer;
+    height: auto;
 }
 
 .paintings--item .fluidimg {
     width: 100%;
-    height: 100%;
+    height: auto;
     max-width: none;
     object-fit: contain;
 }
 
-.paintings--item.active {
-    width: var(--image-width-active);
-    height: var(--image-height-active);
-}
-
 .paintings--item--infos {
-    position: absolute;
-    z-index: 10;
-
-    opacity: 0;
-    scale: 0;
-    transition: all 0.2s ease;
-
     display: flex;
     flex-direction: column;
     gap: var(--spacing-0);
-}
-
-.paintings--item.active .paintings--item--infos, .paintings--item.active .painting--sold{
-
-    opacity: 1;
-    scale: 1;
-
-}
-
-.paintings--item--infos:first-of-type {
-    top: 0;
-    right: 0;
-    transform: translateX(calc(100% + 24px));
+    margin-top: var(--spacing-1);
 }
 
 .paintings--item--infos:nth-of-type(2) {
-    bottom: calc(var(--image-height) + var(--spacing-4));
-    left: 0;
-    transform: translateX(calc(-100% - 24px));
+    flex-direction: column-reverse;
+}
+
+.paintings--item--infos:last-of-type {
     align-items: flex-end;
 }
 
-.paintings--item--infos:nth-of-type(3) {
-    bottom: 0;
-    left: 0;
-    transform: translateY(calc(100% + var(--spacing-1)));
-    gap: var(--spacing-xs);
-}
-
 .painting--sold {
-
-    position: absolute;
-    z-index: 10;
-
-    top: 0;
-    left: 0;
-    transform: translateX(calc(-100% - 24px));
-
-    opacity: 0;
-    scale: 0;
-    transition: all 0.2s ease;
-
     display: flex;
     flex-direction: row;
     gap: var(--spacing-0);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-top: var(--spacing-1);
+
+    position: absolute;
+    top: calc(-1 * var(--spacing-2));
 }
 
 .painting--sold::before {
-
     content: "";
     display: block;
     width: var(--spacing-1);
     height: var(--spacing-1);
-
     border-radius: 50%;
-
     background-color: var(--color-red-50);
-
 }
 
-@media all and (max-width: 1023px) {
+@media all and (min-width: 1024px) {
     .paintings {
-        display: block;
-        padding-inline: var(--spacing-2);
-        padding-bottom: var(--spacing-section);
-        overflow: visible;
+        display: flex;
+        align-items: flex-end;
+        padding-inline: 0;
+        padding-bottom: var(--spacing-6);
+        overflow: hidden;
     }
 
     .paintings--list {
-        display: block;
-        width: 100%;
-        height: auto;
-        transform: none !important;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        height: 100%;
+        gap: var(--spacing-5);
+        transition: transform 0.35s ease;
+        will-change: transform;
+    }
+
+    .paintings--list.is-resetting,
+    .paintings--list.is-resetting .paintings--item {
         transition: none;
     }
 
     .paintings--set {
         display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4);
-        height: auto;
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-items: flex-end;
+        height: 100%;
+        gap: var(--spacing-5);
     }
 
     .paintings--set + .paintings--set {
-        display: none;
+        display: flex;
     }
 
-    .paintings--item,
-    .paintings--item.active {
-        width: 100%;
-        height: auto;
+    .paintings--item {
+        flex: 0 0 auto;
+        width: var(--image-width);
+        height: var(--image-height);
         overflow: visible;
-        transition: none;
+        transition: width 0.35s ease, height 0.35s ease;
     }
 
     .paintings--item picture {
         width: 100%;
-        height: auto;
+        height: 100%;
+        cursor: pointer;
     }
 
     .paintings--item .fluidimg {
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: 100%;
+    }
+
+    .paintings--item.active {
+        width: var(--image-width-active);
+        height: var(--image-height-active);
     }
 
     .paintings--item--infos,
     .painting--sold {
-        position: static;
+        position: absolute;
+        z-index: 10;
+        opacity: 0;
+        scale: 0;
+        transition: all 0.2s ease;
+    }
+
+    .paintings--item.active .paintings--item--infos,
+    .paintings--item.active .painting--sold {
         opacity: 1;
         scale: 1;
-        transform: none !important;
-        transition: none;
     }
 
     .paintings--item--infos {
-        margin-top: var(--spacing-1);
+        margin-top: 0;
+    }
+
+    .paintings--item--infos:first-of-type {
+        top: 0;
+        right: 0;
+        transform: translateX(calc(100% + 24px));
+    }
+
+    .paintings--item--infos:nth-of-type(2) {
+        bottom: calc(var(--image-height) + var(--spacing-4));
+        left: 0;
+        transform: translateX(calc(-100% - 24px));
+        align-items: flex-end;
+        flex-direction: column;
+    }
+
+    .paintings--item--infos:nth-of-type(3) {
+        bottom: 0;
+        left: 0;
+        transform: translateY(calc(100% + var(--spacing-1)));
+        gap: var(--spacing-xs);
+
+        align-items: flex-start;
     }
 
     .painting--sold {
-        justify-content: flex-start;
-        margin-top: var(--spacing-1);
+        top: 0;
+        left: 0;
+        justify-content: center;
+        margin-top: 0;
+        transform: translateX(calc(-100% - 24px));
     }
 }

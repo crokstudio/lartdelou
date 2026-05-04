@@ -19,8 +19,8 @@ if (paintingsList && supportsDesktopCarousel.matches) {
     return parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--image-height")) || 360;
   };
 
-  const getGap = () => {
-    return parseFloat(getComputedStyle(paintingsList).columnGap) || 0;
+  const getItemGap = () => {
+    return parseFloat(getComputedStyle(sets[0]).columnGap) || 0;
   };
 
   const getActiveSize = (ratio) => {
@@ -55,7 +55,7 @@ if (paintingsList && supportsDesktopCarousel.matches) {
   };
 
   const getTargetCenter = (item) => {
-    const gap = getGap();
+    const gap = getItemGap();
     const baseHeight = getBaseHeight();
     let center = 0;
 

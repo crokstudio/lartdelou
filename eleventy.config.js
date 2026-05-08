@@ -105,6 +105,10 @@ export default async function (eleventyConfig) {
     return d.getFullYear();
   });
 
+  eleventyConfig.addNunjucksFilter("json", (value) => {
+    return JSON.stringify(value ?? "").replace(/</g, "\\u003c");
+  });
+
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async (src, alt = "", sizes = "100vw", className = "", loading = "lazy", decoding = "async", fetchpriority = "") => {
     if (!src) {
       return "";

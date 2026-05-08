@@ -6,36 +6,68 @@ title: Contact
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+    {% set featuredFallback = collections.paintings[0] %}
 
     <section class="section contact">
-        <article class="contact-featured" aria-label="Oeuvre mise en avant">
+        <article class="contact-featured" aria-label="Oeuvre mise en avant" data-contact-featured>
             <figure class="contact-featured--figure">
-                {% responsiveImage "/assets/medias/img/test03.png", "Aurora", "(max-width: 1023px) 100vw, 32vw", "contact-featured--image" %}
+                <picture>
+                    <img
+                        src="{{ featuredFallback.data.image }}"
+                        alt="{{ featuredFallback.data.title }}"
+                        sizes="(max-width: 1023px) 100vw, 32vw"
+                        loading="eager"
+                        decoding="async"
+                        class="contact-featured--image"
+                        data-contact-featured-image
+                    >
+                </picture>
                 <figcaption class="contact-featured--caption">
                     <div>
-                        <h2>Aurora</h2>
-                        <p>2024</p>
+                        <h2 data-contact-featured-title>{{ featuredFallback.data.title }}</h2>
+                        <p data-contact-featured-year>{{ featuredFallback.data.date | year }}</p>
                     </div>
                     <div>
-                        <p>Acrylique sur bois</p>
-                        <p>44x48</p>
+                        <p data-contact-featured-type>{{ featuredFallback.data.type }}</p>
+                        <p data-contact-featured-dimensions>{{ featuredFallback.data.dimensions.x }} x {{ featuredFallback.data.dimensions.y }}</p>
                     </div>
                 </figcaption>
             </figure>
         </article>
 
+        <script type="application/json" data-contact-artworks>
+            [
+                {% for artwork in collections.paintings %}
+                    {
+                        "title": {{ artwork.data.title | json | safe }},
+                        "year": {{ artwork.data.date | year | json | safe }},
+                        "type": {{ artwork.data.type | json | safe }},
+                        "image": {{ artwork.data.image | json | safe }},
+                        "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
+                    }{% if not loop.last or collections.sculptures.length %},{% endif %}
+                {% endfor %}
+                {% for artwork in collections.sculptures %}
+                    {
+                        "title": {{ artwork.data.title | json | safe }},
+                        "year": {{ artwork.data.date | year | json | safe }},
+                        "type": {{ artwork.data.type | json | safe }},
+                        "image": {{ artwork.data.image | json | safe }},
+                        "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        </script>
+
         <div class="contact--divider" aria-hidden="true"></div>
 
         <article class="contact-content">
-            <div class="contact-content--header">
-                <h1>Contactez-moi</h1>
-                <div class="contact-content--intro">
-                    <div class="contact-content--details">
-                        <p>L&rsquo;art de Lou</p>
-                        <p>BELGIQUE</p>
-                        <p><a href="mailto:adressmail@gmail.com">adressmail@gmail.com</a></p>
-                    </div>
-                    {% responsiveImage "/assets/medias/img/contact-portrait.png", "Portrait de Lou", "(max-width: 1023px) 24vw, 10vw", "contact-content--portrait" %}
+            
+            <h1>Contactez-moi</h1>
+            <div class="contact-content--intro">
+                <div class="contact-content--details">
+                    <h3>L&rsquo;art de Lou</h3>
+                    <h4>BELGIQUE</h4>
+                    <h4><a href="mailto:adressmail@gmail.com">adressmail@gmail.com</a></h4>
                 </div>
             </div>
 
@@ -44,7 +76,6 @@ title: Contact
                 <p class="contact-form--hidden">
                     <label>Ne pas remplir <input name="bot-field"></label>
                 </p>
-
                 <label class="contact-form--field">
                     <span>Nom</span>
                     <input type="text" name="nom" autocomplete="family-name" required>
@@ -69,7 +100,6 @@ title: Contact
                     <span>Message</span>
                     <textarea name="message" required></textarea>
                 </label>
-
                 <button class="contact-form--submit cta" type="submit">Envoyer</button>
             </form>
         </article>

@@ -1,3 +1,39 @@
+const contactFeatured = document.querySelector("[data-contact-featured]");
+const contactArtworksData = document.querySelector("[data-contact-artworks]");
+
+if (contactFeatured && contactArtworksData) {
+  const parseArtworks = () => {
+    try {
+      const artworks = JSON.parse(contactArtworksData.textContent || "[]");
+      return Array.isArray(artworks) ? artworks.filter((artwork) => artwork.image) : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const setText = (selector, value) => {
+    const element = contactFeatured.querySelector(selector);
+
+    if (element && value) {
+      element.textContent = value;
+    }
+  };
+
+  const artworks = parseArtworks();
+  const artwork = artworks[Math.floor(Math.random() * artworks.length)];
+  const image = contactFeatured.querySelector("[data-contact-featured-image]");
+
+  if (artwork && image) {
+    image.src = artwork.image;
+    image.alt = artwork.title || "";
+
+    setText("[data-contact-featured-title]", artwork.title);
+    setText("[data-contact-featured-year]", artwork.year);
+    setText("[data-contact-featured-type]", artwork.type);
+    setText("[data-contact-featured-dimensions]", artwork.dimensions);
+  }
+}
+
 const paintingsList = document.querySelector("[data-paintings-list]");
 const supportsDesktopCarousel = window.matchMedia("(min-width: 1024px)");
 

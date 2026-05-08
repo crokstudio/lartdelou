@@ -90,6 +90,28 @@ export default async function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("./src/sculptures/*.md");
   });
 
+  eleventyConfig.addCollection("calendar", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/calendar/*.md").sort((a, b) => {
+      const aTime = a.data.startDate ? new Date(a.data.startDate).getTime() : null;
+      const bTime = b.data.startDate ? new Date(b.data.startDate).getTime() : null;
+
+      if (aTime !== null && bTime !== null && aTime !== bTime) {
+        return bTime - aTime;
+      }
+
+      if (aTime !== null && bTime === null) {
+        return -1;
+      }
+
+      if (aTime === null && bTime !== null) {
+        return 1;
+      }
+
+      const orderDifference = Number(a.data.order ?? 0) - Number(b.data.order ?? 0);
+      return orderDifference || String(a.data.title).localeCompare(String(b.data.title), "fr");
+    });
+  });
+
   // Format month name in French (e.g. "janvier")
   eleventyConfig.addNunjucksFilter("monthFrench", (dateInput, capitalize = false) => {
     const d = (dateInput instanceof Date) ? dateInput : new Date(dateInput);
@@ -107,6 +129,48 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addNunjucksFilter("json", (value) => {
     return JSON.stringify(value ?? "").replace(/</g, "\\u003c");
+  });
+
+  eleventyConfig.addNunjucksFilter("calendarDateRange", (startDate, endDate) => {
+    if (!startDate) {
+      return "";
+    }
+
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    const end = endDate ? (endDate instanceof Date ? endDate : new Date(endDate)) : null;
+
+    if (isNaN(start)) {
+      return "";
+    }
+
+    const dayMonthFormatter = new Intl.DateTimeFormat("fr-BE", {
+      day: "2-digit",
+      month: "2-digit",
+      timeZone: "UTC",
+    });
+    const yearFormatter = new Intl.DateTimeFormat("fr-BE", {
+      year: "numeric",
+      timeZone: "UTC",
+    });
+    const startDayMonth = dayMonthFormatter.format(start);
+    const startYear = yearFormatter.format(start);
+
+    if (!end || isNaN(end)) {
+      return `${startDayMonth}/${startYear}`;
+    }
+
+    const endDayMonth = dayMonthFormatter.format(end);
+    const endYear = yearFormatter.format(end);
+
+    if (startDayMonth === endDayMonth && startYear === endYear) {
+      return `${startDayMonth}/${startYear}`;
+    }
+
+    if (startYear === endYear) {
+      return `${startDayMonth} au ${endDayMonth}/${endYear}`;
+    }
+
+    return `${startDayMonth}/${startYear} au ${endDayMonth}/${endYear}`;
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async (src, alt = "", sizes = "100vw", className = "", loading = "lazy", decoding = "async", fetchpriority = "") => {

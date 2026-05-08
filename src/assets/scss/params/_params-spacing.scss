@@ -13,13 +13,13 @@
     --spacing-xl: calc(744px / 16px * 1rem);
 
     --spacing-grid-gap: var(--spacing-0);
-    --spacing-section: var(--spacing-4);
+    --spacing-section: var(--spacing-2);
 
 }
 
 @media all and (min-width: 1024px) {
     :root {
         --spacing-grid-gap: var(--spacing-2);
-        --spacing-section: var(--spacing-5);
+        --spacing-section: var(--spacing-4);
     }
 }

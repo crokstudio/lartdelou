@@ -1,0 +1,39 @@
+---
+permalink: calendar.html
+title: Calendrier
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+
+    <section class="section calendar">
+        <header class="calendar--header">
+            <h1>Calendrier</h1>
+            <h3>Salons, expositions et rencontres.</h3>
+        </header>
+
+        <ol class="calendar--list">
+            {% for event in collections.calendar %}
+                <li class="calendar--item">
+                    <div class="calendar--event">
+                        <h2>{{ event.data.title }}</h2>
+                        {% if event.data.place %}
+                            <p>{{ event.data.place }}</p>
+                        {% endif %}
+                        {% if event.data.note %}
+                            <p class="calendar--note">({{ event.data.note }})</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="calendar--meta">
+                        {% if event.data.startDate %}
+                            <p class="calendar--date">{{ event.data.startDate | calendarDateRange(event.data.endDate) }}</p>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    </section>
+
+{% endblock %}

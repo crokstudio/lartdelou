@@ -8,6 +8,21 @@ media_folder: "src/assets/medias/img"
 public_folder: "/assets/medias/img"
 
 collections:
+  - name: "calendar"
+    label: "Calendrier"
+    label_singular: "Événement"
+    folder: "src/calendar"
+    create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de début", name: "startDate", widget: "date", format: "YYYY-MM-DD", required: false }
+      - { label: "Date de fin", name: "endDate", widget: "date", format: "YYYY-MM-DD", required: false }
+      - { label: "Lieu", name: "place", widget: "string", required: false }
+      - { label: "Note", name: "note", widget: "string", required: false }
+      - { label: "Ordre", name: "order", widget: "number", value_type: "int", required: false }
+
   - name: "projects"
     label: "Projects"
     folder: "src/projects"

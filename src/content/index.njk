@@ -1,10 +1,96 @@
 ---
 permalink: index.html
+title: Accueil
 ---
 
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+    {% set featuredPainting = collections.paintings[0] %}
+    {% set featuredSculpture = collections.sculptures[0] %}
 
+    {% macro artworksJson(artworks) %}
+        [
+            {% for artwork in artworks %}
+                {
+                    "title": {{ artwork.data.title | json | safe }},
+                    "year": {{ artwork.data.date | year | json | safe }},
+                    "type": {{ artwork.data.type | json | safe }},
+                    "image": {{ artwork.data.image | json | safe }},
+                    "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    {% endmacro %}
+
+    <section class="section home">
+        <article class="home--intro">
+            <h1>Entre bois, métal et pétales,<br>peintures et sculptures prennent vie</h1>
+
+            <div class="home--copy">
+                <p>Le temps suspend son souffle, et le monde semble s'effleurer.<br>L'art est un chemin pour redessiner la vie et révéler ses nuances inattendues.</p>
+
+                <p>Entre bois, métal et pétales, mes sculptures et peintures prennent vie, capturant à la fois la délicatesse et la force du vivant.<br>J'aime que chaque matière raconte sa propre histoire : le bois conserve le souvenir du temps, le métal structure l'espace et les pétales évoquent la fragilité et la beauté passagère.</p>
+
+                <p>A travers mes créations, je cherche à éveiller l'émotion, à inviter à ressentir la nature, à s'émerveiller des formes et couleurs, et à rêver, ne serait-ce qu'un instant.</p>
+
+                <p>Chaque oeuvre est une rencontre entre matière et sensibilité, une trace de l'éphémère transformée en émotion durable</p>
+            </div>
+
+            <p class="home--signature">Lou</p>
+        </article>
+
+        <aside class="home--featured" aria-label="Oeuvres mises en avant">
+            <article class="home-artwork home-artwork--painting" data-home-artwork-feature>
+                <a class="home-artwork--link" href="/paintings/">
+                    <figure class="home-artwork--figure">
+                        <picture>
+                            <img
+                                src="{{ featuredPainting.data.image }}"
+                                alt="{{ featuredPainting.data.title }}"
+                                loading="eager"
+                                decoding="async"
+                                class="home-artwork--image"
+                                data-home-artwork-image
+                            >
+                        </picture>
+                        <figcaption class="home-artwork--caption">
+                            <div>
+                                <h2 data-home-artwork-title>{{ featuredPainting.data.title }}</h2>
+                                <p data-home-artwork-year>{{ featuredPainting.data.date | year }}</p>
+                            </div>
+                            <span class="cta">Peintures</span>
+                        </figcaption>
+                    </figure>
+                </a>
+                <script type="application/json" data-home-artworks>{{ artworksJson(collections.paintings) }}</script>
+            </article>
+
+            <article class="home-artwork home-artwork--sculpture" data-home-artwork-feature>
+                <a class="home-artwork--link" href="/sculptures/">
+                    <figure class="home-artwork--figure">
+                        <picture>
+                            <img
+                                src="{{ featuredSculpture.data.image }}"
+                                alt="{{ featuredSculpture.data.title }}"
+                                loading="eager"
+                                decoding="async"
+                                class="home-artwork--image"
+                                data-home-artwork-image
+                            >
+                        </picture>
+                        <figcaption class="home-artwork--caption">
+                            <div>
+                                <h2 data-home-artwork-title>{{ featuredSculpture.data.title }}</h2>
+                                <p data-home-artwork-year>{{ featuredSculpture.data.date | year }}</p>
+                            </div>
+                            <span class="cta">Sculptures</span>
+                        </figcaption>
+                    </figure>
+                </a>
+                <script type="application/json" data-home-artworks>{{ artworksJson(collections.sculptures) }}</script>
+            </article>
+        </aside>
+    </section>
 
 {% endblock %}

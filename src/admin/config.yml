@@ -19,7 +19,7 @@ collections:
     sortable_fields: ["title", "date", "type", "sold"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
       - label: "Dimensions"
         name: "dimensions"
         widget: "object"
@@ -43,7 +43,7 @@ collections:
     sortable_fields: ["title", "date", "type", "sold"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
       - label: "Dimensions"
         name: "dimensions"
         widget: "object"
@@ -67,8 +67,8 @@ collections:
     sortable_fields: ["title", "startDate", "endDate", "place", "order"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date de début", name: "startDate", widget: "date", format: "YYYY-MM-DD", required: false }
-      - { label: "Date de fin", name: "endDate", widget: "date", format: "YYYY-MM-DD", required: false }
+      - { label: "Date de début", name: "startDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+      - { label: "Date de fin", name: "endDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
       - { label: "Lieu", name: "place", widget: "string", required: false }
       - { label: "Note", name: "note", widget: "string", required: false }
       - { label: "Ordre", name: "order", widget: "number", value_type: "int", required: false }

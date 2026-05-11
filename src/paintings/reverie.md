@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Rêverie
 date: 2021-01-01
 dimensions:

@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Aurora
 date: 2024-01-01
 dimensions:

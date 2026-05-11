@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: MiniMoi & Moi
 date: 2025-01-01
 dimensions:

@@ -8,6 +8,54 @@ media_folder: "src/assets/medias/img"
 public_folder: "/assets/medias/img"
 
 collections:
+  - name: "paintings"
+    label: "Peintures"
+    label_singular: "Peinture"
+    folder: "src/paintings"
+    create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    sortable_fields: ["title", "date", "type", "sold"]
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - label: "Dimensions"
+        name: "dimensions"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Largeur (cm)", name: "x", widget: "number", value_type: "int" }
+          - { label: "Hauteur (cm)", name: "y", widget: "number", value_type: "int" }
+      - { label: "Technique", name: "type", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Vendu", name: "sold", widget: "boolean", default: false }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: false }
+
+  - name: "sculptures"
+    label: "Sculptures"
+    label_singular: "Sculpture"
+    folder: "src/sculptures"
+    create: true
+    identifier_field: "title"
+    slug: "{{slug}}"
+    summary: "{{title}} - {{date}}"
+    sortable_fields: ["title", "date", "type", "sold"]
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - label: "Dimensions"
+        name: "dimensions"
+        widget: "object"
+        collapsed: false
+        fields:
+          - { label: "Largeur (cm)", name: "x", widget: "number", value_type: "int" }
+          - { label: "Hauteur (cm)", name: "y", widget: "number", value_type: "int" }
+      - { label: "Technique", name: "type", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Vendu", name: "sold", widget: "boolean", default: false }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: false }
+
   - name: "calendar"
     label: "Calendrier"
     label_singular: "Événement"
@@ -15,6 +63,8 @@ collections:
     create: true
     identifier_field: "title"
     slug: "{{slug}}"
+    summary: "{{title}} - {{startDate}}"
+    sortable_fields: ["title", "startDate", "endDate", "place", "order"]
     fields:
       - { label: "Titre", name: "title", widget: "string" }
       - { label: "Date de début", name: "startDate", widget: "date", format: "YYYY-MM-DD", required: false }
@@ -22,147 +72,4 @@ collections:
       - { label: "Lieu", name: "place", widget: "string", required: false }
       - { label: "Note", name: "note", widget: "string", required: false }
       - { label: "Ordre", name: "order", widget: "number", value_type: "int", required: false }
-
-  - name: "projects"
-    label: "Projects"
-    folder: "src/projects"
-    create: true
-    slug: "{{slug}}"
-
-    fields:
-      - { label: "Titre", name: "title", widget: "string" }
-
-      - label: "Dates"
-        name: "dates"
-        widget: "list"
-        field: { label: "Date", name: "date", widget: "datetime" }
-
-      - { label: "Client", name: "client", widget: "string" }
-      - { label: "Type", name: "type", widget: "string" }
-
-      # SERVICES
-      - label: "Services"
-        name: "services"
-        widget: "relation"
-        collection: "services"
-        multiple: true
-        search_fields: ["name"]
-        value_field: "tag"
-        display_fields: ["name"]
-        min: 1
-
-      # SKILLS
-      - label: "Skills"
-        name: "skills"
-        widget: "list"
-        fields:
-          - { label: "Softwares", name: "softwares", widget: "string", required: false }
-          - { label: "Hardwares", name: "hardwares", widget: "string", required: false }
-
-      - { label: "Cover", name: "cover", widget: "image" }
-
-      - { label: "Description", name: "description", widget: "text" }
-
-      #SECTIONS (le plus intéressant)
-      - label: "Sections"
-        name: "sections"
-        widget: "list"
-        collapsed: true
-        typeKey: "kind"
-        types:
-          - label: "Texte"
-            name: "text"
-            widget: "object"
-            fields:
-              - { label: "Titre", name: "title", widget: "string", required: false }
-              - { label: "Texte", name: "text", widget: "text" }
-              - { label: "Justification", name: "justify", widget: "select", options: ["left", "right"], default: "right" }
-
-          - label: "Image horizontale"
-            name: "image_horizontal"
-            widget: "object"
-            fields:
-              - { label: "Image", name: "image", widget: "image" }
-
-          - label: "Vidéo horizontale"
-            name: "video_horizontal"
-            widget: "object"
-            fields:
-              - { label: "Vidéo name", name: "video", widget: "string" }
-
-          - label: "Vidéo verticale"
-            name: "video_vertical"
-            widget: "object"
-            fields:
-              - { label: "Vidéo name", name: "video", widget: "string" }
-              - { label: "Justification", name: "justify", widget: "select", options: ["left", "right"], default: "right" }
-
-          - label: "Image verticale"
-            name: "image_vertical"
-            widget: "object"
-            fields:
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Justification", name: "justify", widget: "select", options: ["left", "right"], default: "right" }
-
-          - label: "Double image verticale"
-            name: "double_image_vertical"
-            widget: "object"
-            fields:
-              - label: "Images"
-                name: "images"
-                widget: "list"
-                min: 2
-                max: 2
-                field: { label: "Image", name: "image", widget: "image" }
-
-          - label: "Double vidéo verticale"
-            name: "double_video_vertical"
-            widget: "object"
-            fields:
-              - label: "Vidéos"
-                name: "videos"
-                widget: "list"
-                min: 2
-                max: 2
-                field: { label: "Vidéo name", name: "video", widget: "string" }
-
-      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/project.njk" }
-
-  - name: "partners"
-    label: "Partners"
-    label_singular: "Partner"
-    folder: "src/partners"
-    create: true
-    identifier_field: "name"
-    slug: "{{slug}}"
-    fields:
-      - { label: "Nom", name: "name", widget: "string" }
-      - { label: "Logo", name: "logo", widget: "image" }
-      - { label: "Background", name: "background", widget: "image" }
-
-  - name: "collaborators"
-    label: "Collaborators"
-    label_singular: "Collaborator"
-    folder: "src/collaborators"
-    create: true
-    identifier_field: "name"
-    slug: "{{slug}}"
-    fields:
-      - { label: "Nom", name: "name", widget: "string" }
-      - { label: "Profile Picture", name: "profilePicture", widget: "image" }
-
-  - name: "services"
-    label: "Services"
-    label_singular: "Service"
-    folder: "src/services"
-    create: true
-    identifier_field: "name"
-    slug: "{{slug}}"
-    fields:
-      - { label: "Nom", name: "name", widget: "string" }
-      - { label: "Tag", name: "tag", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - label: "Compétences"
-        name: "skills"
-        widget: "list"
-        field: { label: "Compétence", name: "skill", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: false }

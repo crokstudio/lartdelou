@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Emergence
 date: 2025-01-01
 dimensions:

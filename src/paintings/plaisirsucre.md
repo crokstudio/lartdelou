@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Plaisir sucré
 date: 2020-01-01
 dimensions:

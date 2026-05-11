@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Luna
 date: 2025-01-01
 dimensions:

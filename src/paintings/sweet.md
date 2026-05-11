@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Sweet
 date: 2023-01-01
 dimensions:

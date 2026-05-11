@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Lollipop
 date: 2022-01-01
 dimensions:

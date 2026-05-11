@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Légèrté
 date: 2022-01-01
 dimensions: 

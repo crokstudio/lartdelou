@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Rose
 date: 2026-01-01
 dimensions:

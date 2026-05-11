@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Libre
 date: 2023-01-01
 dimensions:

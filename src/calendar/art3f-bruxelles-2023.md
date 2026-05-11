@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Art3f
 startDate: 2023-11-24
 endDate: 2023-11-26

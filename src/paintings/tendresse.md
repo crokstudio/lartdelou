@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Tendresse
 date: 2020-01-01
 dimensions:

@@ -1,4 +1,5 @@
 ---
+permalink: false
 title: Art3f
 startDate: 2025-04-25
 endDate: 2025-04-27

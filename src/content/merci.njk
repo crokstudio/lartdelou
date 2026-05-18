@@ -7,5 +7,78 @@ title: Merci
 
 {% block content %}
 
+    {% set featuredPainting = collections.paintings[0] %}
+    {% set featuredSculpture = collections.sculptures[0] %}
+
+    {% macro artworksJson(artworks) %}
+        [
+            {% for artwork in artworks %}
+                {
+                    "title": {{ artwork.data.title | json | safe }},
+                    "year": {{ artwork.data.date | year | json | safe }},
+                    "type": {{ artwork.data.type | json | safe }},
+                    "image": {{ artwork.data.image | json | safe }},
+                    "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    {% endmacro %}
+
+ <section class="section home">
+            <h1>Merci pour votre message</h1>
+
+        <aside class="home--featured" aria-label="Oeuvres mises en avant">
+            <article class="home-artwork home-artwork--painting" data-home-artwork-feature>
+                <a class="home-artwork--link" href="/paintings/">
+                    <figure class="home-artwork--figure">
+                        <picture>
+                            <img
+                                src="{{ featuredPainting.data.image }}"
+                                alt="{{ featuredPainting.data.title }}"
+                                loading="eager"
+                                decoding="async"
+                                class="home-artwork--image"
+                                data-home-artwork-image
+                            >
+                        </picture>
+                        <figcaption class="home-artwork--caption">
+                            <div>
+                                <h2 data-home-artwork-title>{{ featuredPainting.data.title }}</h2>
+                                <p data-home-artwork-year>{{ featuredPainting.data.date | year }}</p>
+                            </div>
+                            <span class="cta">Peintures</span>
+                        </figcaption>
+                    </figure>
+                </a>
+                <script type="application/json" data-home-artworks>{{ artworksJson(collections.paintings) }}</script>
+            </article>
+
+            <article class="home-artwork home-artwork--sculpture" data-home-artwork-feature>
+                <a class="home-artwork--link" href="/sculptures/">
+                    <figure class="home-artwork--figure">
+                        <picture>
+                            <img
+                                src="{{ featuredSculpture.data.image }}"
+                                alt="{{ featuredSculpture.data.title }}"
+                                loading="eager"
+                                decoding="async"
+                                class="home-artwork--image"
+                                data-home-artwork-image
+                            >
+                        </picture>
+                        <figcaption class="home-artwork--caption">
+                            <div>
+                                <h2 data-home-artwork-title>{{ featuredSculpture.data.title }}</h2>
+                                <p data-home-artwork-year>{{ featuredSculpture.data.date | year }}</p>
+                            </div>
+                            <span class="cta">Sculptures</span>
+                        </figcaption>
+                    </figure>
+                </a>
+                <script type="application/json" data-home-artworks>{{ artworksJson(collections.sculptures) }}</script>
+            </article>
+        </aside>
+    </section>
+
 
 {% endblock %}

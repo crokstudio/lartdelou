@@ -23,3 +23,18 @@
         --spacing-section: var(--spacing-4);
     }
 }
+
+@-moz-document url-prefix() {
+    :root {
+        --spacing-xs: 0.375rem;
+        --spacing-0: 0.625rem;
+        --spacing-1: 1.125rem;
+        --spacing-2: 1.5rem;
+        --spacing-3: 2.25rem;
+        --spacing-4: 3.375rem;
+        --spacing-5: 5.0625rem;
+        --spacing-6: 7.5625rem;
+        --spacing-7: 11.375rem;
+        --spacing-xl: 46.5rem;
+    }
+}

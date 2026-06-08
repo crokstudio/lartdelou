@@ -81,6 +81,10 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+
+# OVH/Decap runtime secrets
+src/admin/oauth/config.php
+dist/admin/oauth/config.php
 .output
 
 # Gatsby files

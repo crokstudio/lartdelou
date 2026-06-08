@@ -1,8 +1,12 @@
 local_backend: true
 
 backend:
-  name: git-gateway
+  name: github
+  repo: crokstudio/lartdelou
   branch: main
+  base_url: https://www.lartdelou.be/admin/oauth
+  auth_endpoint: auth.php
+  site_domain: www.lartdelou.be
 
 media_folder: "src/assets/medias/img"
 public_folder: "/assets/medias/img"

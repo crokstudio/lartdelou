@@ -67,12 +67,11 @@ title: Contact
                 <div class="contact-content--details">
                     <h3>L&rsquo;art de Lou</h3>
                     <h4>BELGIQUE</h4>
-                    <h4><a href="mailto:lou@lartdelou.be">lou@lartdelou.be</a></h4>
+                    <h4><a href="mailto:{{ site.email }}">{{ site.email }}</a></h4>
                 </div>
             </div>
 
-            <form class="contact-form" name="contact" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="contact">
+            <form class="contact-form" name="contact" method="POST" action="/assets/php/contact.php">
                 <p class="contact-form--hidden">
                     <label>Ne pas remplir <input name="bot-field"></label>
                 </p>

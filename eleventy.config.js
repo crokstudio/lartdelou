@@ -244,7 +244,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/assets/medias/svg");
   eleventyConfig.addPassthroughCopy("./src/assets/medias/img");
   eleventyConfig.addPassthroughCopy("./src/assets/medias/icons");
+  eleventyConfig.addPassthroughCopy("./src/assets/php");
   eleventyConfig.addPassthroughCopy("./src/admin");
+  eleventyConfig.addPassthroughCopy("./src/.htaccess");
   
   // Eleventy dev server config
   eleventyConfig.setServerOptions({

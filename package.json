@@ -14,7 +14,8 @@
     "watch:styles": "onchange \"./src/assets/scss/**/*\" -- npm run styles:dev",
     "watch:scripts": "onchange \"./src/assets/js/**/*\" \"./functions/**/*\" -- npm run scripts:dev",
     "build": "npm-run-all clear --parallel eleventy scripts:prod styles:prod",
-    "dev": "npm-run-all --parallel server watch:*"
+    "dev": "npm-run-all --parallel server watch:*",
+    "netlify": "npm run dev & npx netlify dev"
   },
   "keywords": [],
   "author": "Elann Fraiture",
@@ -34,5 +35,8 @@
     "sass": "^1.85.0",
     "slugify": "^1.6.6",
     "stripe": "^17.6.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.11.1"
   }
 }

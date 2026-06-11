@@ -71,10 +71,10 @@ title: Contact
                 </div>
             </div>
 
-            <form class="contact-form" name="contact" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="bot-field">
+            <form class="contact-form" name="contact" method="POST" action="/merci/" data-netlify="true" data-netlify-honeypot="bot-field" netlify-honeypot="bot-field" data-contact-form>
                 <input type="hidden" name="form-name" value="contact">
-                <p class="contact-form--hidden">
-                    <label>Ne pas remplir <input name="bot-field"></label>
+                <p class="contact-form--hidden" aria-hidden="true">
+                    <label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label>
                 </p>
                 <label class="contact-form--field">
                     <span>Nom</span>
@@ -101,6 +101,7 @@ title: Contact
                     <textarea name="message" required></textarea>
                 </label>
                 <button class="contact-form--submit cta" type="submit">Envoyer</button>
+                <p class="contact-form--status" role="status" aria-live="polite" data-contact-form-status></p>
             </form>
         </article>
     </section>

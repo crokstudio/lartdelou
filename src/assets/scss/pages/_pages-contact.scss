@@ -85,8 +85,15 @@
     gap: var(--spacing-0);
 }
 
-.contact-content--details p:first-child {
-    font-weight: 700;
+.contact-content--intro {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-3);
+}
+
+.contact-content--intro p:first-child {
+    max-width: var(--spacing-xl);
 }
 
 .contact-content--details a {

@@ -1,9 +1,9 @@
 ---
-title: Osea
+title: Elana
 date: 2026-06-24
 dimensions:
-  x: 30
-  y: 56
+  x: 69
+  y: 69
 type: Sculpture filaire - Pétales de fleur
 image: /assets/medias/img/elana_-_lartdelou-mulhouse-2-removebg-preview.png
 sold: false

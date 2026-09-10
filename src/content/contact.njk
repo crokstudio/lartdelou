@@ -6,7 +6,7 @@ title: Contact
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-    {% set featuredFallback = collections.paintings[0] %}
+    {% set featuredFallback = collections.sculptures[0] %}
 
     <section class="section contact">
         <article class="contact-featured" aria-label="Oeuvre mise en avant" data-contact-featured>
@@ -35,17 +35,21 @@ title: Contact
             </figure>
         </article>
 
+<!-- Sculpture only
+{% for artwork in collections.paintings %}
+    {
+        "title": {{ artwork.data.title | json | safe }},
+        "year": {{ artwork.data.date | year | json | safe }},
+        "type": {{ artwork.data.type | json | safe }},
+        "image": {{ artwork.data.image | json | safe }},
+        "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
+    }{% if not loop.last or collections.sculptures.length %},{% endif %}
+{% endfor %}
+-->
+
         <script type="application/json" data-contact-artworks>
+        
             [
-                {% for artwork in collections.paintings %}
-                    {
-                        "title": {{ artwork.data.title | json | safe }},
-                        "year": {{ artwork.data.date | year | json | safe }},
-                        "type": {{ artwork.data.type | json | safe }},
-                        "image": {{ artwork.data.image | json | safe }},
-                        "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
-                    }{% if not loop.last or collections.sculptures.length %},{% endif %}
-                {% endfor %}
                 {% for artwork in collections.sculptures %}
                     {
                         "title": {{ artwork.data.title | json | safe }},

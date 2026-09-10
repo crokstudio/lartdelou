@@ -135,4 +135,9 @@
         height: 100%;
         max-height: none;
     }
+
+    // Sculpture only
+    .home-artwork--sculpture {
+        grid-area: 3/4;
+    }
 }

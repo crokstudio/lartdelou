@@ -41,6 +41,79 @@ if (contactFeatured && contactArtworksData) {
   }
 }
 
+const contactForm = document.querySelector("[data-contact-form]");
+
+if (
+  contactForm &&
+  typeof fetch === "function" &&
+  typeof FormData === "function" &&
+  typeof URLSearchParams === "function"
+) {
+  const contactFormStatus = contactForm.querySelector("[data-contact-form-status]");
+  const contactFormSubmit = contactForm.querySelector('[type="submit"]');
+  const defaultSubmitLabel = contactFormSubmit?.textContent || "";
+
+  const setContactFormStatus = (message, state = "") => {
+    if (!contactFormStatus) {
+      return;
+    }
+
+    contactFormStatus.textContent = message;
+
+    if (state) {
+      contactFormStatus.dataset.state = state;
+    } else {
+      delete contactFormStatus.dataset.state;
+    }
+  };
+
+  const setContactFormSubmitting = (isSubmitting) => {
+    if (!contactFormSubmit) {
+      return;
+    }
+
+    contactFormSubmit.disabled = isSubmitting;
+    contactFormSubmit.textContent = isSubmitting ? "Envoi..." : defaultSubmitLabel;
+  };
+
+  contactForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    if (!formData.get("form-name") && contactForm.name) {
+      formData.set("form-name", contactForm.name);
+    }
+
+    setContactFormSubmitting(true);
+    setContactFormStatus("Envoi du message...", "pending");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Contact form failed with status ${response.status}`);
+      }
+
+      contactForm.reset();
+      setContactFormStatus("Message envoy\u00e9, merci.", "success");
+
+      window.setTimeout(() => {
+        window.location.assign(contactForm.getAttribute("action") || "/merci/");
+      }, 500);
+    } catch {
+      setContactFormStatus("L'envoi n'a pas abouti. Vous pouvez \u00e9crire \u00e0 lou@lartdelou.be.", "error");
+      setContactFormSubmitting(false);
+    }
+  });
+}
+
 document.querySelectorAll("[data-home-artwork-feature]").forEach((feature) => {
   const artwork = getRandomArtwork(parseArtworkData(feature.querySelector("[data-home-artworks]")));
   const image = feature.querySelector("[data-home-artwork-image]");

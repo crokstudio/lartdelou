@@ -23,6 +23,10 @@
   text-underline-offset: 0.25em;
 }
 
+.mainnav--logo img {
+  height: 56px;
+}
+
 @media all and (min-width: 1024px) {
   .mainnav--container {
     align-items: center;

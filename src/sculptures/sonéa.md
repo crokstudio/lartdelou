@@ -5,7 +5,7 @@ dimensions:
   x: 32
   y: 41
 type: Sculpture filaire
-image: /assets/medias/img/contact-portrait.png
+image: /assets/medias/img/sonéa-32x41-2026-2.jpg
 sold: false
 permalink: false
 ---

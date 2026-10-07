@@ -1,0 +1,29 @@
+name: Publish after three quiet minutes
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publication-main
+  cancel-in-progress: true
+
+jobs:
+  release:
+    if: >-
+      github.event_name == 'workflow_dispatch' || github.event.head_commit.message != 'chore: publish after three quiet minutes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: |
+            scripts
+            .netlify
+      - name: Wait for three minutes without a new publication
+        run: node scripts/release-after-quiet.mjs

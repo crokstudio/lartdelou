@@ -12,7 +12,8 @@ test("missing verification data never claims successful publication", () => {
   }
 });
 test("a long wait is described as a delay, not an unverified deployment failure", () => {
-  const state = getPublicationState({ snapshot: { revision: "old" }, latestRevision: "saved", waitingSince: 0, now: 300001 });
+  assert.equal(getPublicationState({ snapshot: { revision: "old" }, latestRevision: "saved", waitingSince: 0, now: 300001 }).state, "pending");
+  const state = getPublicationState({ snapshot: { revision: "old" }, latestRevision: "saved", waitingSince: 0, now: 480001 });
   assert.equal(state.state, "delayed");
   assert.doesNotMatch(state.message, /échec/i);
 });

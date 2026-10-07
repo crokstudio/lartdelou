@@ -1,4 +1,5 @@
 local_backend: true
+locale: publication
 
 backend:
   name: git-gateway

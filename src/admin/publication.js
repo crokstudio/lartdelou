@@ -77,7 +77,7 @@ for (const name of ["postSave", "postPublish", "postUnpublish"]) {
   window.CMS?.registerEventListener({ name, handler: () => {
     saveGeneration++;
     waitingSince = Date.now();
-    render({ state: "pending", label: "Mise à jour en cours", message: "Vos modifications sont enregistrées. Le site se met à jour.", hidden: lastSnapshot?.hidden || [] });
+    render({ state: "pending", label: "Publication en attente", message: "Vos modifications sont enregistrées. La mise à jour se lance après trois minutes sans nouveau changement, puis le site se met à jour.", hidden: lastSnapshot?.hidden || [] });
     // Let the Git Gateway complete the save before reading the branch head.
     setTimeout(refresh, 1000);
   } });

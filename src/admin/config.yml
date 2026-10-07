@@ -28,7 +28,7 @@ collections:
           - { label: "Largeur (cm)", name: "x", widget: "number", value_type: "int" }
           - { label: "Hauteur (cm)", name: "y", widget: "number", value_type: "int" }
       - { label: "Technique", name: "type", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image", name: "image", widget: "image", required: false, hint: "Sans image disponible, l’œuvre est temporairement masquée sur le site. Vous pouvez choisir une nouvelle photo ou une ancienne conservée dans la médiathèque." }
       - { label: "Vendu", name: "sold", widget: "boolean", default: false }
       - { label: "Permalink", name: "permalink", widget: "hidden", default: false }
 
@@ -52,7 +52,7 @@ collections:
           - { label: "Largeur (cm)", name: "x", widget: "number", value_type: "int" }
           - { label: "Hauteur (cm)", name: "y", widget: "number", value_type: "int" }
       - { label: "Technique", name: "type", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Image", name: "image", widget: "image", required: false, hint: "Sans image disponible, l’œuvre est temporairement masquée sur le site. Vous pouvez choisir une nouvelle photo ou une ancienne conservée dans la médiathèque." }
       - { label: "Vendu", name: "sold", widget: "boolean", default: false }
       - { label: "Permalink", name: "permalink", widget: "hidden", default: false }
 

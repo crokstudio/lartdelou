@@ -80,14 +80,55 @@ const generateResponsiveMetadata = async (src, widths, options = {}) => {
 };
 
 export default async function (eleventyConfig) {
+  // Validate with the same image processing used by the gallery before any
+  // template (including the random home/contact features) selects an artwork.
+  const imageChecks = new Map();
+  eleventyConfig.on("eleventy.before", () => imageChecks.clear());
+
+  const getPublishableArtworks = async (artworks) => {
+    const checked = await Promise.all(artworks.map(async (artwork) => {
+      const src = artwork.data.image;
+      if (typeof src !== "string" || !src.trim()) {
+        return null;
+      }
+
+      if (!imageChecks.has(src)) {
+        imageChecks.set(src, generateResponsiveMetadata(src, RESPONSIVE_IMAGE_WIDTHS)
+          .catch((error) => {
+            console.warn(`[artworks] ${artwork.inputPath} temporarily hidden: image ${src} unavailable (${error.message}).`);
+            return null;
+          }));
+      }
+
+      const metadata = await imageChecks.get(src);
+      if (!metadata) {
+        return null;
+      }
+
+      // TIFF and similar uploads can be processed for the gallery but cannot
+      // be displayed directly by browsers on the home/contact pages.
+      const browserFormats = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"];
+      const publicImage = browserFormats.includes(getImageExtension(src))
+        ? src
+        : metadata.webp?.at(-1)?.url;
+      if (!publicImage) {
+        return null;
+      }
+      artwork.data.publicImage = publicImage;
+      return artwork;
+    }));
+
+    return checked.filter(Boolean);
+  };
+
   // Paintings collection
-  eleventyConfig.addCollection("paintings", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/paintings/*.md");
+  eleventyConfig.addCollection("paintings", async function (collectionApi) {
+    return getPublishableArtworks(collectionApi.getFilteredByGlob("./src/paintings/*.md"));
   });
 
   // Sculptures collection
-  eleventyConfig.addCollection("sculptures", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("./src/sculptures/*.md");
+  eleventyConfig.addCollection("sculptures", async function (collectionApi) {
+    return getPublishableArtworks(collectionApi.getFilteredByGlob("./src/sculptures/*.md"));
   });
 
   eleventyConfig.addCollection("calendar", function (collectionApi) {

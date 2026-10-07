@@ -16,7 +16,7 @@ title: Accueil
                     "title": {{ artwork.data.title | json | safe }},
                     "year": {{ artwork.data.date | year | json | safe }},
                     "type": {{ artwork.data.type | json | safe }},
-                    "image": {{ artwork.data.image | json | safe }},
+                    "image": {{ artwork.data.publicImage | json | safe }},
                     "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
                 }{% if not loop.last %},{% endif %}
             {% endfor %}
@@ -66,12 +66,13 @@ title: Accueil
                 <script type="application/json" data-home-artworks>{{ artworksJson(collections.paintings) }}</script>
             </article>
             -->
+            {% if featuredSculpture %}
             <article class="home-artwork home-artwork--sculpture" data-home-artwork-feature>
                 <a class="home-artwork--link" href="/sculptures/">
                     <figure class="home-artwork--figure">
                         <picture>
                             <img
-                                src="{{ featuredSculpture.data.image }}"
+                                src="{{ featuredSculpture.data.publicImage }}"
                                 alt="{{ featuredSculpture.data.title }}"
                                 loading="eager"
                                 decoding="async"
@@ -90,6 +91,7 @@ title: Accueil
                 </a>
                 <script type="application/json" data-home-artworks>{{ artworksJson(collections.sculptures) }}</script>
             </article>
+            {% endif %}
         </aside>
     </section>
 

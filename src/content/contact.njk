@@ -9,11 +9,12 @@ title: Contact
     {% set featuredFallback = collections.sculptures[0] %}
 
     <section class="section contact">
+        {% if featuredFallback %}
         <article class="contact-featured" aria-label="Oeuvre mise en avant" data-contact-featured>
             <figure class="contact-featured--figure">
                 <picture>
                     <img
-                        src="{{ featuredFallback.data.image }}"
+                        src="{{ featuredFallback.data.publicImage }}"
                         alt="{{ featuredFallback.data.title }}"
                         sizes="(max-width: 1023px) 100vw, 32vw"
                         loading="eager"
@@ -34,6 +35,7 @@ title: Contact
                 </figcaption>
             </figure>
         </article>
+        {% endif %}
 
 <!-- Sculpture only
 {% for artwork in collections.paintings %}
@@ -55,14 +57,16 @@ title: Contact
                         "title": {{ artwork.data.title | json | safe }},
                         "year": {{ artwork.data.date | year | json | safe }},
                         "type": {{ artwork.data.type | json | safe }},
-                        "image": {{ artwork.data.image | json | safe }},
+                        "image": {{ artwork.data.publicImage | json | safe }},
                         "dimensions": {{ (artwork.data.dimensions.x ~ " x " ~ artwork.data.dimensions.y) | json | safe }}
                     }{% if not loop.last %},{% endif %}
                 {% endfor %}
             ]
         </script>
 
+        {% if featuredFallback %}
         <div class="contact--divider" aria-hidden="true"></div>
+        {% endif %}
 
         <article class="contact-content">
             

@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "test": "node --test tests/*.test.js",
     "clear": "rimraf \"./dist\"",
     "eleventy": "npx @11ty/eleventy --quiet",
     "server": "npx @11ty/eleventy --serve --quiet",

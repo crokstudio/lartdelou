@@ -70,6 +70,14 @@ test("media changes never block other artworks or leave broken feature images", 
     }
     // Hiding an artwork must never delete its editable CMS entry.
     assert.ok(await fs.stat(path.join(fixture, "src/sculptures/Premiere.md")));
+    const publication = JSON.parse(await fs.readFile(path.join(fixture, "dist/admin/publication.json"), "utf8"));
+    const allTitles = ["Premiere", "Seconde", "Peinture"];
+    const visibleTitles = [...expectedSculptures, ...expectedPaintings];
+    assert.equal(publication.version, 1);
+    assert.ok(!Number.isNaN(Date.parse(publication.publishedAt)));
+    assert.deepEqual(publication.hidden.map((a) => a.title).sort(),
+      allTitles.filter((title) => !visibleTitles.includes(title)).sort());
+    assert.ok(publication.hidden.every((a) => ["no-image", "unavailable-image"].includes(a.reason)));
     return sculptures;
   };
 

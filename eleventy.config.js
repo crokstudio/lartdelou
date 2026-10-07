@@ -6,6 +6,8 @@ import slugify from "slugify";
 import Image from "@11ty/eleventy-img"; 
 //node path module
 import path from "path";
+import { mkdir, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 
 const RESPONSIVE_IMAGE_WIDTHS = [320, 480, 768, 1024, 1440, 1920];
 const BACKGROUND_IMAGE_WIDTHS = [640, 1280];
@@ -83,13 +85,45 @@ export default async function (eleventyConfig) {
   // Validate with the same image processing used by the gallery before any
   // template (including the random home/contact features) selects an artwork.
   const imageChecks = new Map();
-  eleventyConfig.on("eleventy.before", () => imageChecks.clear());
+  const hiddenArtworks = new Map();
+  eleventyConfig.on("eleventy.before", () => {
+    imageChecks.clear();
+    hiddenArtworks.clear();
+  });
+
+  const hideArtwork = (artwork, reason) => {
+    hiddenArtworks.set(artwork.inputPath, {
+      title: String(artwork.data.title || artwork.fileSlug),
+      collection: artwork.inputPath.includes("/sculptures/") ? "sculptures" : "paintings",
+      reason,
+    });
+    return null;
+  };
+
+  eleventyConfig.on("eleventy.after", async ({ dir }) => {
+    let revision = process.env.COMMIT_REF || null;
+    if (!revision) {
+      try {
+        revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+      } catch {
+        // Local previews without Git cannot confirm publication against a commit.
+      }
+    }
+    const output = path.join(dir.output, "admin");
+    await mkdir(output, { recursive: true });
+    await writeFile(path.join(output, "publication.json"), JSON.stringify({
+      version: 1,
+      revision,
+      publishedAt: new Date().toISOString(),
+      hidden: Array.from(hiddenArtworks.values()).sort((a, b) => a.title.localeCompare(b.title, "fr")),
+    }));
+  });
 
   const getPublishableArtworks = async (artworks) => {
     const checked = await Promise.all(artworks.map(async (artwork) => {
       const src = artwork.data.image;
       if (typeof src !== "string" || !src.trim()) {
-        return null;
+        return hideArtwork(artwork, "no-image");
       }
 
       if (!imageChecks.has(src)) {
@@ -102,7 +136,7 @@ export default async function (eleventyConfig) {
 
       const metadata = await imageChecks.get(src);
       if (!metadata) {
-        return null;
+        return hideArtwork(artwork, "unavailable-image");
       }
 
       // TIFF and similar uploads can be processed for the gallery but cannot
@@ -112,7 +146,7 @@ export default async function (eleventyConfig) {
         ? src
         : metadata.webp?.at(-1)?.url;
       if (!publicImage) {
-        return null;
+        return hideArtwork(artwork, "unavailable-image");
       }
       artwork.data.publicImage = publicImage;
       return artwork;

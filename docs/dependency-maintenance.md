@@ -1,8 +1,10 @@
 # Maintenance des dépendances — 7 octobre 2026
 
-Travail réalisé uniquement sur la branche locale `codex/dependency-maintenance`.
-Aucun push, workflow GitHub distant ou déploiement Netlify n'a été lancé.
-La fusion et la publication nécessitent une nouvelle instruction de l'utilisateur.
+Maintenance préparée et validée sur la branche locale `codex/dependency-maintenance`,
+sans push ni déploiement pendant l'audit. L'utilisateur a ensuite autorisé le
+7 octobre 2026 un push final du lot sur `main`. Les résultats ci-dessous décrivent
+les vérifications locales avant cette publication ; le workflow distant et le
+déploiement final sont à confirmer après le push.
 
 ## Résultat de l'audit
 
@@ -78,8 +80,8 @@ pas un audit complet des services d'authentification/CDN.
 Recontrôler les trois avis avant toute publication et attendre les versions
 corrigées stables. Valider avec `npm ci`, `npm test`, `npm run build`, puis
 `npm audit`. La commande d'audit restera non nulle tant que les avis subsistent.
-Les changements checkout sont validés statiquement ; aucun nouveau workflow
-distant n'a été exécuté afin de respecter la consigne de ne rien publier.
+Les changements checkout sont validés statiquement pendant l'audit, sans nouveau
+workflow distant. Le push final autorisé permet ensuite leur vérification réelle.
 
 Références des versions : [Eleventy 3.1.6](https://github.com/11ty/buildawesome/releases/tag/v3.1.6),
 [Image 7.0.0](https://github.com/11ty/image/releases/tag/v7.0.0),

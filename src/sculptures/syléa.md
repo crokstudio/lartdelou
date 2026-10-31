@@ -1,5 +1,5 @@
 ---
-title: Syléa
+title: Aadhar
 date: 2026-10-06
 dimensions:
   x: 52

@@ -1,5 +1,5 @@
 ---
-title: Ondéa
+title: Lisière
 date: 2026-10-06
 dimensions:
   x: 53

@@ -1,11 +1,11 @@
 ---
-permalink: false
-title: Blanche
+title: Stella
 date: 2026-01-01
 dimensions:
-    y: 50
-    x: 30
-type: "Sculpture filée"
+  y: 50
+  x: 30
+type: Sculpture filée
 image: /assets/medias/img/sculpture03.png
 sold: false
+permalink: false
 ---

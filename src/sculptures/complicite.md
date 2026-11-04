@@ -4,7 +4,7 @@ date: 2026-01-01
 dimensions:
   y: 58
   x: 48
-type: Sculpture filée
+type: Sculpture filaire
 image: /assets/medias/img/complicite-58x48-2025.jpg
 sold: false
 permalink: false

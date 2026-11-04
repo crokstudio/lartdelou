@@ -6,6 +6,6 @@ dimensions:
   y: 63
 type: Sculpture filaire & pétales de fleur
 image: /assets/medias/img/flore-63x40-2026.png
-sold: false
+sold: true
 permalink: false
 ---

@@ -5,7 +5,7 @@ dimensions:
   y: 58
   x: 48
 type: Sculpture filée
-image: /assets/medias/img/complicite-48x58-2025.jpg
+image: /assets/medias/img/complicite-58x48-2025.jpg
 sold: false
 permalink: false
 ---

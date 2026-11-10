@@ -1,7 +1,7 @@
 ---
-permalink: false
-title: Galerie « Just en Anne Jaeckin »
-place: Paris
-note: Au profit de AGBO
+title: 2023 - Bruxelles & Courtrai
+place: Salon d'art contemporain
+note: ""
 order: 1
+permalink: false
 ---

@@ -1,8 +1,8 @@
 ---
-title: "2023"
+title: 2011 - Namur (Citadelle de Namur)
 startDate: ""
 endDate: ""
-place: Bruxelles & Courtrai
-note: Exposition commune
+place: Au profit de Ptibou Life
+note: ""
 permalink: false
 ---

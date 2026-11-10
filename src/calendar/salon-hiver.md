@@ -1,6 +1,6 @@
 ---
-permalink: false
-title: Salon d'Hiver
-place: Ottignies - Belgique
+title: 2025 - Reims
+place: Salon d'art contemporain
 order: 3
+permalink: false
 ---

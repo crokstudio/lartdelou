@@ -1,7 +1,7 @@
 ---
-permalink: false
-title: Exposition privée au Château de l'Ermitage
-place: Wavre - Belgique
-note: Au profit de la Vie là
+title: 2014 -Wavre
+place: Parcours d'artistes
+note: ""
 order: 5
+permalink: false
 ---

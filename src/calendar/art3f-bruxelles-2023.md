@@ -1,7 +1,7 @@
 ---
-permalink: false
-title: Art3f
+title: 2011 - Court Saint Etienne
 startDate: 2023-11-24
 endDate: 2023-11-26
-place: Brussels Expo - Heysel - Palais 1
+place: Parcours d'artistes
+permalink: false
 ---

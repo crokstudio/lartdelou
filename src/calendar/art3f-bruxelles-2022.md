@@ -2,7 +2,7 @@
 title: 2011 - Namur
 startDate: ""
 endDate: ""
-place: Citadelle de Namur
-note: Au profit de Ptibou Life
+place: Au profit de Ptibou Life
+note: Citadelle de Namur
 permalink: false
 ---

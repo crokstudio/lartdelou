@@ -1,7 +1,8 @@
 ---
+title: 2014 - Wavre
+startDate: ""
+endDate: ""
+place: Exposition privée
+note: Château de l'Ermitage
 permalink: false
-title: Art3f
-startDate: 2025-04-25
-endDate: 2025-04-27
-place: Reims - Parc des expositions
 ---

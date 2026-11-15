@@ -6,6 +6,6 @@ dimensions:
   y: 76
 type: Sculpture filaire
 image: /assets/medias/img/valse-46x76-2025.png
-sold: false
+sold: true
 permalink: false
 ---

@@ -5,7 +5,7 @@ dimensions:
   x: 31
   y: 36
 type: Sculputre filaire
-image: /assets/medias/img/celeste-36x31-2026.jpg
+image: /assets/medias/img/celeste-36x31-2026.png
 sold: false
 permalink: false
 ---

@@ -6,6 +6,6 @@ dimensions:
   y: 61
 type: Sculpture filaire
 image: /assets/medias/img/allegresse-61x51-2026.jpeg
-sold: false
+sold: true
 permalink: false
 ---

@@ -6,6 +6,6 @@ dimensions:
   y: 53
 type: Sculpture filaire
 image: /assets/medias/img/twina-58x53-2026.jpeg
-sold: false
+sold: true
 permalink: false
 ---

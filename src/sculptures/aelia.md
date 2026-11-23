@@ -6,6 +6,6 @@ dimensions:
   y: 57
 type: Sculpture filaire & pétales de fleur
 image: /assets/medias/img/aelia.png
-sold: false
+sold: true
 permalink: false
 ---

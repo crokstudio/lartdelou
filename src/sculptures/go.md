@@ -6,6 +6,6 @@ dimensions:
   y: 44
 type: Sculpture filaire
 image: /assets/medias/img/go-44x35-2026.jpg
-sold: false
+sold: true
 permalink: false
 ---
